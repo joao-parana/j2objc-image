@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+export HUB_USER_NAME=parana
+
+echo "Exemplo de uso: ./run-image bash"
+
+set -x
+
+docker run --rm -i -t -h j2objc.local \
+    -e CONFIG_FILE_LOCATION=/etc/config-j2objc/ \
+    -v ~/Desktop/Development/j2objc-image/test:/tmp/test \
+    -p 4522:22 \
+    --net=bridge \
+    $HUB_USER_NAME/j2objc \
+    $1 $2 $3 $4
